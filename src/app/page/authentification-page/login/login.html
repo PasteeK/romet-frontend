@@ -1,0 +1,97 @@
+<main id="contenu" class="relative min-h-svh">
+  <!-- Background image -->
+  <img
+    src="assets/images/ecran_principal.png"
+    alt=""
+    aria-hidden="true"
+    class="pointer-events-none select-none absolute inset-0 -z-10 h-full w-full object-cover"
+    loading="eager"
+    fetchpriority="high"
+  />
+  <div class="absolute inset-0 -z-10 bg-black/40"></div>
+
+  <section class="flex min-h-svh items-center justify-center px-4 py-8" aria-labelledby="login-title">
+    <div class="w-full max-w-md">
+      <h1 id="login-title" class="text-center font-romet text-white text-2xl sm:text-3xl md:text-4xl mb-6 drop-shadow">
+        Se connecter
+      </h1>
+
+      <form
+        class="w-full bg-white/90 backdrop-blur p-6 sm:p-8 rounded-2xl shadow-xl"
+        (ngSubmit)="login()"
+        #f="ngForm"
+        autocomplete="on"
+        novalidate
+      >
+        <!-- Pseudo -->
+        <div class="mb-4">
+          <label for="username" class="block mb-1 text-gray-800 font-medium">
+            Nom d'utilisateur
+          </label>
+          <input
+            id="username"
+            class="w-full px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-bordeaux"
+            type="text"
+            [(ngModel)]="username"
+            name="username"
+            #user="ngModel"
+            required
+            spellcheck="false"
+            autocapitalize="off"
+            autocomplete="username"
+            inputmode="text"
+            aria-describedby="username-help"
+          />
+        </div>
+
+        <!-- Mot de passe -->
+        <div class="mb-4">
+          <label for="password" class="block mb-1 text-gray-800 font-medium">
+            Mot de passe
+          </label>
+          <input
+            id="password"
+            class="w-full px-4 py-2 bg-gray-100 rounded-xl focus:outline-none focus:ring-2 focus:ring-bordeaux"
+            type="password"
+            [(ngModel)]="password"
+            name="password"
+            #pwd="ngModel"
+            required
+            minlength="8"
+            autocomplete="current-password"
+          />
+        </div>
+
+        <!-- Success and error messages -->
+        @if (successMessage()) {
+          <div class="mb-4 p-3 rounded-lg bg-green-100 text-green-800 border border-green-300"
+               role="status" aria-live="polite">
+            {{ successMessage() }}
+          </div>
+        }
+
+        @if (errorMessage()) {
+          <div class="mb-4 p-3 rounded-lg bg-red-100 text-red-800 border border-red-300"
+               role="alert" aria-live="assertive">
+            {{ errorMessage() }}
+          </div>
+        }
+
+        <!-- Actions -->
+        <button
+          class="w-full bg-buttonBack border-4 border-buttonBorder text-white font-semibold py-2 rounded-xl hover:bg-bordeaux transition duration-200 hover:cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+          type="submit"
+        >
+          Se connecter
+        </button>
+
+        <p class="mt-5 text-center text-sm text-gray-800 drop-shadow">
+          Pas de compte ?
+          <a routerLink="/register" class="underline underline-offset-4 hover:no-underline">
+            Créer un compte
+          </a>
+        </p>
+      </form>
+    </div>
+  </section>
+</main>
