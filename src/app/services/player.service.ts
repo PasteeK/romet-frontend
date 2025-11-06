@@ -1,6 +1,7 @@
 // src/app/services/player.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 export interface Preferences {
   showTutorial: boolean;
@@ -17,7 +18,7 @@ export interface MeDTO {
 
 @Injectable({ providedIn: 'root' })
 export class PlayerService {
-  private base = 'http://localhost:3000';
+  private base = environment.API_BASE_URL;
 
   constructor(private http: HttpClient) {}
 

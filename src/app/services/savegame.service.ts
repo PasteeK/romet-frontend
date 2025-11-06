@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, firstValueFrom } from 'rxjs';
 import { EncounterType } from '../game/types/encounter';
+import { environment } from '../../environments/environment';
 
 export type EventType = 'start' | 'fight' | 'elite' | 'shop' | 'smoking' | 'cheater' | 'boss';
 
@@ -74,7 +75,7 @@ export interface SavegameDTO {
   providedIn: 'root'
 })
 export class SavegameService {
-  private API = 'http://localhost:3000/savegames';
+  private API = environment.API_BASE_URL + '/savegames';
 
   constructor(private http: HttpClient) {}
 

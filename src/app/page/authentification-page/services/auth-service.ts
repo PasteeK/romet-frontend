@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, signal } from '@angular/core';
 import { map, Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class AuthService {
 
   getMe(): Observable<{ pseudo: string; email: string; gamesPlayed: number }> {
     return this.http.get<{ pseudo: string; email: string; gamesPlayed: number }>(
-      'http://localhost:3000/players/me',
+      environment.API_BASE_URL + '/players/me',
       {
         headers: { Authorization: `Bearer ${this.getToken()}` }
       }
@@ -39,7 +40,7 @@ export class AuthService {
   }
 
   deleteAccount(): Observable<void> {
-    return this.http.delete<void>('http://localhost:3000/players/me', {
+    return this.http.delete<void>(environment.API_BASE_URL + '/players/me', {
       headers: { Authorization: `Bearer ${this.getToken()}` }
     });
   }
